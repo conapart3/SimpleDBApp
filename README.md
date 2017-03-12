@@ -2,6 +2,11 @@
 
 Simple application with data base access, created using Java 8.
 
+## Pre-requisites
+
+- A running PostgreSQL server.
+- Java 8.
+
 ## Instructions
 
 1. Clone the repo.
