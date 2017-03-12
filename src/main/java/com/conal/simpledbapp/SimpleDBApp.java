@@ -14,7 +14,7 @@ import org.kohsuke.args4j.spi.SubCommands;
  */
 public class SimpleDBApp {
     /**
-     * Global help flag
+     * Global help flag - to display basic usage help of the jar file
      */
     @Option(name = "-help", aliases = "-h", usage = "displays help for the application", help = true)
     public boolean help;
@@ -35,10 +35,21 @@ public class SimpleDBApp {
     })
     AppCommand cmd;
 
+    /**
+     * Main application entry point
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.exit(new SimpleDBApp().run(args));
     }
 
+    /**
+     * Parse the command line options and arguments. Based on the AppCommand we will execute different logic.
+     *
+     * @param args
+     * @return exit status
+     */
     private int run(String[] args) {
         CmdLineParser cmdLineParser = new CmdLineParser(this);
 

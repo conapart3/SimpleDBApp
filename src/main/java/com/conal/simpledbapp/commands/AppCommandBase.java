@@ -9,7 +9,7 @@ import org.kohsuke.args4j.Option;
  */
 public abstract class AppCommandBase implements AppCommand {
 
-    @Option(name = "-help", aliases = "-h", usage = "show help for specific command", help = true)
+    @Option(name = "-help", aliases = "-h", usage = "Show usage help for a specific command", help = true)
     private boolean help;
 
     protected DatabaseHelper dbHelper;

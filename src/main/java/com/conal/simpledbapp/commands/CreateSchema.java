@@ -6,6 +6,7 @@ package com.conal.simpledbapp.commands;
 public class CreateSchema extends AppCommandBase {
     public void execute() {
         super.execute();
+
         dbHelper.createSchema();
     }
 }

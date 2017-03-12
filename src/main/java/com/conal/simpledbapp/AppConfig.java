@@ -9,6 +9,7 @@ public class AppConfig {
     private String password;
 
     public AppConfig() {
+        // First get from system property, and if it fails, use the default, which will be system environment variable
         dbConnectionUrl = System.getProperty("db-connection-url", System.getenv("db-connection-url"));
         user = System.getProperty("user", System.getenv("user"));
         password = System.getProperty("password", System.getenv("password"));

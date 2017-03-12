@@ -7,7 +7,7 @@ import org.kohsuke.args4j.Option;
  */
 public class DeleteServer extends AppCommandBase {
 
-    @Option(name = "-id", aliases = "-i", required = true, usage = "id of the server")
+    @Option(name = "-id", aliases = "-i", required = true, usage = "The server ID")
     private String id;
 
     public void execute() {

@@ -34,15 +34,16 @@ public class DatabaseHelper {
      * @return Connection
      */
     public Connection getConnection() {
-        if(appConfig.getDbConnectionUrl()==null){
+        // Validate the appConfig, that the necessary environment variables have been set
+        if (appConfig.getDbConnectionUrl() == null) {
             System.err.println("System property \"db-connection-url\" is null. This must be set to point to your PostgresQL server");
             System.exit(1);
         }
-        if(appConfig.getUser()==null){
+        if (appConfig.getUser() == null) {
             System.err.println("System property \"user\" is null. This must be set to allow access to your PostgresQL server");
             System.exit(1);
         }
-        if(appConfig.getPassword()==null){
+        if (appConfig.getPassword() == null) {
             System.err.println("System property \"password\" is null. This must be set to allow access to your PostgresQL server");
             System.exit(1);
         }

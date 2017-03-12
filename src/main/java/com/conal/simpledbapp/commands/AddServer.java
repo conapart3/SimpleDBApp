@@ -7,19 +7,19 @@ import org.kohsuke.args4j.Option;
  */
 public class AddServer extends AppCommandBase {
 
-    @Option(name = "-id", aliases = "-i", required = true, usage = "id of the server")
+    @Option(name = "-id", aliases = "-i", required = true, usage = "The server ID")
     private String id;
 
-    @Option(name = "-name", aliases = "-n", required = true, usage = "name of the server")
+    @Option(name = "-name", aliases = "-n", required = true, usage = "The server name")
     private String name;
 
-    @Option(name = "-desc", aliases = "-d", required = true, usage = "desc of the server")
-    private String desc;
+    @Option(name = "-description", aliases = "-d", required = true, usage = "The server description")
+    private String description;
 
     public void execute() {
         super.execute();
 
-        dbHelper.addServer(id, name, desc);
-        System.out.println("Operation to add server with name: " + name +" completed successfully.");
+        dbHelper.addServer(id, name, description);
+        System.out.println("Operation to add server with name: " + name + " completed successfully.");
     }
 }
