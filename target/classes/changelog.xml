@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet id="create_server_table" author="Conal Smith">
+        <createTable tableName="servers">
+            <column name="id" type="VARCHAR(48)">
+                <constraints primaryKey="true" primaryKeyName="pk_id" nullable="false"/>
+            </column>
+            <column name="name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_server" author="Conal Smith">
+        <createProcedure path="addServer.sql"
+                         procedureName="add_server"
+                         schemaName="public">
+        </createProcedure>
+    </changeSet>
+
+    <changeSet id="edit_server" author="Conal Smith">
+        <createProcedure path="editServer.sql"
+                         procedureName="edit_server"
+                         schemaName="public">
+        </createProcedure>
+    </changeSet>
+
+    <changeSet id="delete_server" author="Conal Smith">
+        <createProcedure path="deleteServer.sql"
+                         procedureName="delete_server"
+                         schemaName="public">
+        </createProcedure>
+    </changeSet>
+
+    <changeSet id="count_servers" author="Conal Smith">
+        <createProcedure path="countServers.sql"
+                         procedureName="count_servers"
+                         schemaName="public">
+        </createProcedure>
+    </changeSet>
+
+    <changeSet id="list_servers" author="Conal Smith">
+        <createProcedure path="listServers.sql"
+                         procedureName="list_servers"
+                         schemaName="public">
+        </createProcedure>
+    </changeSet>
+</databaseChangeLog>
