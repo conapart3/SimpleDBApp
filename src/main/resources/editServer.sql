@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION edit_server(in_id VARCHAR(48), in_name TEXT, in_description TEXT)
+CREATE OR REPLACE FUNCTION edit_server(in_id integer, in_name VARCHAR(20), in_description TEXT)
     RETURNS VOID AS $$
 BEGIN
 

@@ -8,7 +8,7 @@ import org.kohsuke.args4j.Option;
 public class EditServer extends AppCommandBase {
 
     @Option(name = "-id", aliases = "-i", required = true, usage = "The ID of the server")
-    private String id;
+    private int id;
 
     @Option(name = "-name", aliases = "-n", required = true, usage = "The server name")
     private String name;

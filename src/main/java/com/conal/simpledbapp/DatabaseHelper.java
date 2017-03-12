@@ -66,20 +66,22 @@ public class DatabaseHelper {
     /**
      * Add a server. Call the add_server stored procedure.
      *
-     * @param id          server id
      * @param name        server name
      * @param description server description
      */
-    public void addServer(String id, String name, String description) {
-        String sql = "{call add_server(?,?,?)}";
+    public void addServer(String name, String description) {
+        if(name.length() > 20){
+            System.err.println("Name should be maximum 20 characters.");
+            System.exit(1);
+        }
+        String sql = "{call add_server(?,?)}";
 
         try (
                 Connection conn = getConnection();
                 CallableStatement stmt = conn.prepareCall(sql);
         ) {
-            stmt.setString(1, id);
-            stmt.setString(2, name);
-            stmt.setString(3, description);
+            stmt.setString(1, name);
+            stmt.setString(2, description);
 
             ResultSet rs = stmt.executeQuery();
             stmt.close();
@@ -98,14 +100,18 @@ public class DatabaseHelper {
      * @param name        the altered name of the server
      * @param description the altered description of the server
      */
-    public void editServer(String id, String name, String description) {
+    public void editServer(int id, String name, String description) {
+        if(name.length() > 20){
+            System.err.println("Name should be maximum 20 characters.");
+            System.exit(1);
+        }
         String sql = "{call edit_server(?,?,?)}";
 
         try (
                 Connection conn = getConnection();
                 CallableStatement stmt = conn.prepareCall(sql);
         ) {
-            stmt.setString(1, id);
+            stmt.setInt(1, id);
             stmt.setString(2, name);
             stmt.setString(3, description);
 
@@ -163,7 +169,7 @@ public class DatabaseHelper {
 
             while (rs.next()) {
                 Server s = new Server();
-                s.setId(rs.getString("id"));
+                s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
                 s.setDescription(rs.getString("description"));
                 serverList.add(s);
@@ -185,14 +191,14 @@ public class DatabaseHelper {
      *
      * @param id server to delete
      */
-    public void deleteServer(String id) {
+    public void deleteServer(int id) {
         String sql = "{call delete_server(?)}";
 
         try (
                 Connection conn = getConnection();
                 CallableStatement stmt = conn.prepareCall(sql);
         ) {
-            stmt.setString(1, id);
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             stmt.close();
             conn.close();
@@ -201,25 +207,6 @@ public class DatabaseHelper {
             System.err.println(e);
             System.exit(1);
         }
-    }
-
-    /**
-     * Validate that the servers table exists.
-     *
-     * @return if table exists
-     */
-    private boolean checkIfTableExists() {
-        // If the table does not exist already, create it.
-        Statement stmt = null;
-        String sql =
-                "SELECT EXISTS(\n" +
-                        "    SELECT * \n" +
-                        "    FROM information_schema.tables \n" +
-                        "    WHERE \n" +
-                        "      table_schema = 'public' AND \n" +
-                        "      table_name = 'servers'\n" +
-                        ");";
-        return true;
     }
 
     /**

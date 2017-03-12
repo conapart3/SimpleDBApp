@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION delete_server(in_id VARCHAR(48))
+CREATE OR REPLACE FUNCTION delete_server(in_id integer)
     RETURNS VOID AS $$
 BEGIN
 

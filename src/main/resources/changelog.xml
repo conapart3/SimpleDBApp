@@ -6,10 +6,10 @@
 
     <changeSet id="create_server_table" author="Conal Smith">
         <createTable tableName="servers">
-            <column name="id" type="VARCHAR(48)">
-                <constraints primaryKey="true" primaryKeyName="pk_id" nullable="false"/>
+            <column name="id" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_id" nullable="false" />
             </column>
-            <column name="name" type="TEXT">
+            <column name="name" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="TEXT">
